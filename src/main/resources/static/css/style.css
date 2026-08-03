@@ -311,6 +311,74 @@ body {
 
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ---------- Markdown 渲染样式 ---------- */
+.msg .content p { margin: 4px 0; }
+.msg .content p:first-child { margin-top: 0; }
+.msg .content h1, .msg .content h2, .msg .content h3, .msg .content h4 {
+  font-family: var(--font-serif);
+  margin: 12px 0 4px;
+  line-height: 1.4;
+}
+.msg .content h4 { font-size: 1.02em; }
+.msg .content ul, .msg .content ol { margin: 6px 0 6px 20px; }
+.msg .content li { margin: 3px 0; }
+.msg .content code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(27, 36, 55, 0.08);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.msg-user .content code { background: rgba(246, 243, 235, 0.18); color: var(--paper); }
+.msg .content pre {
+  background: rgba(27, 36, 55, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.msg .content pre code { background: none; padding: 0; }
+.msg .content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.msg .content strong { font-weight: 600; }
+.msg .content blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 8px 0;
+  padding: 2px 0 2px 12px;
+  color: var(--ink-soft);
+}
+.msg .content hr { border: none; border-top: 1px dashed var(--line-strong); margin: 10px 0; }
+.report-card blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 8px 0;
+  padding: 2px 0 2px 12px;
+  color: var(--ink-soft);
+}
+
+.report-card ul, .report-card ol { margin: 6px 0 6px 20px; }
+.report-card li { margin: 3px 0; }
+.report-card code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  background: rgba(27, 36, 55, 0.08);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+.report-card pre {
+  background: rgba(27, 36, 55, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-size: 13px;
+}
+.report-card pre code { background: none; padding: 0; }
+.report-card a { color: var(--accent); }
+.report-card h3 { font-family: var(--font-serif); font-size: 1.05rem; }
+
 /* 输入区 */
 .answer-bar { display: flex; gap: 10px; }
 
