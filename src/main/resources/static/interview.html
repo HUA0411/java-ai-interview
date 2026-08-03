@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 面试模拟系统 · 面试</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="topbar">
+    <span class="topbar-brand">AI 面试模拟系统</span>
+    <div class="topbar-actions">
+      <a href="/history.html">历史记录</a>
+      <button id="logout-btn">退出</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="error-bar" id="error-bar"></div>
+
+    <!-- 创建面试 -->
+    <section id="create-section">
+      <h2 class="section-title"><span class="num">01</span>选择面试方向</h2>
+      <div class="direction-grid">
+        <div class="direction-card selected" data-direction="JAVA">
+          <span class="code">JAVA</span>
+          <h3>Java 后端</h3>
+          <p>集合 / JVM / Spring / 并发</p>
+        </div>
+        <div class="direction-card" data-direction="FRONTEND">
+          <span class="code">FRONTEND</span>
+          <h3>前端开发</h3>
+          <p>HTML / CSS / JS / 浏览器</p>
+        </div>
+        <div class="direction-card" data-direction="AI">
+          <span class="code">AI</span>
+          <h3>AI 应用</h3>
+          <p>RAG / Agent / LLM 应用</p>
+        </div>
+      </div>
+      <button class="btn" id="start-btn">开 始 面 试</button>
+    </section>
+
+    <!-- 对话区 -->
+    <section id="chat-section" style="display:none">
+      <h2 class="section-title"><span class="num">02</span>模拟面试</h2>
+      <p class="progress" id="progress">PROGRESS: 0 / 5</p>
+
+      <div class="card chat-box" id="chat-box"></div>
+
+      <div class="answer-bar" id="answer-bar">
+        <textarea class="input" id="answer-input" rows="2"
+                  placeholder="输入你的回答，Enter 发送，Shift+Enter 换行…"></textarea>
+        <button class="btn" id="send-btn">发 送</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/interview.js"></script>
+  <script>
+    document.getElementById('logout-btn').addEventListener('click', () => API.logout());
+  </script>
+</body>
+</html>
