@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 面试模拟系统 · 历史记录</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="topbar">
+    <span class="topbar-brand">AI 面试模拟系统</span>
+    <div class="topbar-actions">
+      <a href="/interview.html">开始面试</a>
+      <button id="logout-btn">退出</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="error-bar" id="error-bar"></div>
+
+    <!-- 会话列表 -->
+    <section id="list-section">
+      <h2 class="section-title"><span class="num">01</span>历史面试记录</h2>
+      <div id="session-list"></div>
+    </section>
+
+    <!-- 报告详情 -->
+    <section id="report-section" style="display:none">
+      <button class="btn btn-outline" id="back-btn" style="margin-bottom:20px">← 返回列表</button>
+      <div id="report-body"></div>
+    </section>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/history.js"></script>
+  <script>
+    document.getElementById('logout-btn').addEventListener('click', () => API.logout());
+  </script>
+</body>
+</html>
