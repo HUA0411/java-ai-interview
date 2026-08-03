@@ -81,8 +81,8 @@
         '<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">' +
         '<strong style="font-size:14px">第 ' + (i + 1) + ' 题 · ' + (r.score || '-') + ' 分</strong>' +
         '</div>' +
-        '<p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px">' + escapeHtml(r.question || '') + '</p>' +
-        '<p style="font-size:13.5px;margin-top:6px">' + escapeHtml(r.comment || '') + '</p>' +
+        '<p style="font-size:13.5px;color:var(--ink-soft);margin-top:4px">' + md2html(r.question || '') + '</p>' +
+        '<p style="font-size:13.5px;margin-top:6px">' + md2html(r.comment || '') + '</p>' +
         '</div>'
       ).join('');
     } catch (e) { qaHtml = '<p style="color:var(--ink-faint)">（逐题点评解析失败）</p>'; }
@@ -92,8 +92,8 @@
       '  <h2 class="section-title" style="margin-bottom:8px"><span class="num">02</span>面试评估报告</h2>' +
       '  <div class="report-score">' + report.overallScore + '<span style="font-size:1rem;color:var(--ink-faint)"> / 100</span></div>' +
       '  <div class="report-section"><h4>逐题点评</h4>' + qaHtml + '</div>' +
-      '  <div class="report-section"><h4>综合评语</h4><p>' + escapeHtml(report.summary || '') + '</p></div>' +
-      '  <div class="report-section"><h4>改进建议</h4><p>' + escapeHtml(report.suggestions || '') + '</p></div>' +
+      '  <div class="report-section"><h4>综合评语</h4>' + md2html(report.summary || '') + '</div>' +
+      '  <div class="report-section"><h4>改进建议</h4>' + md2html(report.suggestions || '') + '</div>' +
       '</div>';
   }
 
@@ -106,11 +106,5 @@
   function showError(msg) {
     els.errorBar.textContent = msg;
     els.errorBar.classList.add('show');
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
   }
 })();
