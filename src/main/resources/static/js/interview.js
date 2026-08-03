@@ -95,6 +95,7 @@
     const reader = resp.body.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
+    const fullText = { text: '' }; // 累计全文，供实时 Markdown 渲染
 
     while (true) {
       const { done, value } = await reader.read();
@@ -108,14 +109,16 @@
         const dataLine = block.split('\n').find((l) => l.startsWith('data:'));
         if (!dataLine) continue;
         const evt = JSON.parse(dataLine.slice(5).trim());
-        handleSseEvent(evt, aiMsg);
+        handleSseEvent(evt, aiMsg, fullText);
       }
     }
   }
 
-  function handleSseEvent(evt, aiMsg) {
+  function handleSseEvent(evt, aiMsg, fullText) {
     if (evt.type === 'delta') {
-      aiMsg.querySelector('.content').textContent += evt.content;
+      // 流式实时渲染 Markdown（每段增量后重渲染全文，效果等同打字机）
+      fullText.text += evt.content;
+      aiMsg.querySelector('.content').innerHTML = md2html(fullText.text);
       els.chatBox.scrollTop = els.chatBox.scrollHeight;
     } else if (evt.type === 'finished') {
       aiMsg.classList.remove('typing-cursor');
@@ -157,7 +160,7 @@
     els.progress.textContent = 'PROGRESS: 1 / ' + TOTAL;
     const aiMsg = addMessage('AI', '');
     aiMsg.classList.remove('typing-cursor'); // 首题已完整显示，无需打字机光标
-    aiMsg.querySelector('.content').textContent = firstQuestion;
+    aiMsg.querySelector('.content').innerHTML = md2html(firstQuestion);
     els.answerInput.focus();
   }
 
@@ -166,7 +169,14 @@
     div.className = 'msg ' + (role === 'AI' ? 'msg-ai typing-cursor' : 'msg-user');
     div.innerHTML = '<span class="msg-role">' + (role === 'AI' ? 'AI 面试官' : '你') + '</span>' +
       '<span class="content"></span>';
-    if (content) div.querySelector('.content').textContent = content;
+    const contentEl = div.querySelector('.content');
+    if (content) {
+      if (role === 'AI') {
+        contentEl.innerHTML = md2html(content); // AI 消息渲染 Markdown
+      } else {
+        contentEl.textContent = content;        // 用户消息保持纯文本
+      }
+    }
     els.chatBox.appendChild(div);
     els.chatBox.scrollTop = els.chatBox.scrollHeight;
     return div;
