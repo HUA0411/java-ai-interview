@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 面试模拟系统 · 登录</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="card login-card">
+      <h1 class="login-title">AI 面试模拟系统</h1>
+      <p class="login-sub">INTERVIEW COPILOT · JWT AUTH</p>
+
+      <div class="error-bar" id="error-bar"></div>
+
+      <div class="tabs">
+        <button type="button" id="tab-login" class="active">登录</button>
+        <button type="button" id="tab-register">注册</button>
+      </div>
+
+      <label class="label" for="username">USERNAME</label>
+      <input class="input" id="username" placeholder="用户名（3-20 位）" autocomplete="username">
+
+      <label class="label" for="password" style="margin-top:16px">PASSWORD</label>
+      <input class="input" id="password" type="password" placeholder="密码（至少 6 位）" autocomplete="current-password">
+
+      <button class="btn btn-block" id="submit-btn" style="margin-top:24px">登 录</button>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
