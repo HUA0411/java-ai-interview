@@ -1,0 +1,39 @@
+# ============ AI 面试模拟系统 — 配置模板 ============
+# 本地实际配置放 application-local.yml（已 gitignore），用 -Dspring-boot.run.profiles=local 启动
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-interview
+  datasource:
+    url: jdbc:mysql://localhost:3306/ai_interview?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    banner: false
+
+# ---------- 自定义配置 ----------
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY}
+  base-url: https://api.deepseek.com
+  model: deepseek-chat
+
+rag:
+  # 本地 RAG 服务地址（Java 面试知识库项目 FastAPI），不可用时自动降级为纯 LLM
+  service-url: http://localhost:8000
+
+jwt:
+  # 生产环境务必更换为随机密钥
+  secret: ${JWT_SECRET}
+  expire-days: 7
