@@ -2,6 +2,12 @@
 (function () {
   'use strict';
 
+  // 已登录用户访问登录页时直接进入面试页
+  if (localStorage.getItem('token')) {
+    location.href = '/interview.html';
+    return;
+  }
+
   const tabLogin = document.getElementById('tab-login');
   const tabRegister = document.getElementById('tab-register');
   const formTitle = document.getElementById('form-title');
